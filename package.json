@@ -1,0 +1,28 @@
+{
+  "name": "d3-pj",
+  "version": "0.0.1",
+  "description": "custom d3 for Luftdaten",
+  "keywords": [
+    "d3",
+    "d3-module"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "build/d3-pj.js",
+  "jsnext:main": "index",
+  "homepage": "https://github.com/pjgueno/d3-pj",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pjgueno/d3-pj.git"
+  },
+  "scripts": {
+    "pretest": "rm -rf build && mkdir build && rollup -f umd -n d3 -o build/d3-pj.js -- index.js",
+    "test": "tape 'test/**/*-test.js'",
+    "prepublish": "npm run test && uglifyjs build/d3-pj.js -c -m -o build/d3-pj.min.js",
+    "postpublish": "zip -j build/d3-pj.zip -- LICENSE README.md build/d3-pj.js build/d3-pj.min.js"
+  },
+  "devDependencies": {
+    "rollup": "0.27",
+    "tape": "4",
+    "uglify-js": "2"
+  }
+}
